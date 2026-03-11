@@ -1,8 +1,18 @@
 import React from 'react'
+import Navbar from './components/layout/Navbar'
+import Hero from './components/sections/Hero'
+
 
 const App = () => {
   return (
-    <div className=' h-[1400px] text-3xl font-bold underline text-red-500'>React Portfolio</div>
+    <div className='min-h-screen bg-black'>
+      <Navbar />
+
+      <main>
+        <Hero/>
+      </main>
+    </div>
+    
   )
 }
 
