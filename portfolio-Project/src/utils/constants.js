@@ -3,7 +3,7 @@ export const PERSONAL_INFO = {
     title:"FrontEnd Developer",
     email:"srohilla099@gmail.com",
     location: "Haryana, India",
-    resume:"/resume.pdf",
+    resume:"/images/resume.pdf",
     bio:[
         "I'm a passionate FrontEnd Developer",
         "My expertise spans the entire frontend ecosystem from React",
