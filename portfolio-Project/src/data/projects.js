@@ -4,7 +4,7 @@ export const projects = [
     title: "WhyConnect",
     description:
       "Real Time Chatting APP with Video and Audio Call and ChatBot Features",
-    image: "https://picsum.photos/seed/whyconnect/800/600",
+    image: "/images/projects/why-connect-image.png",
     category: "Full Stack",
     technologies: [
       "React(Vite)",
@@ -23,7 +23,7 @@ export const projects = [
     title: "NewerSocial",
     description:
       "Image Uploadation and Updation with Real Time Text Editor using Appwrite",
-    image: "https://picsum.photos/seed/newersocial/800/600",
+    image: "/images/projects/image-newer-social.webp",
     category: "FrontEnd",
     technologies: [
       "React(Vite)",
