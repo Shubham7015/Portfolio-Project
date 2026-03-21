@@ -11,12 +11,15 @@ import { PERSONAL_INFO, SOCIAL_LINKS } from "../../utils/constants";
 import FadeIn from "../animations/FadeIn";
 
 const Contact = () => {
+  const FORMSPREE_ID = "mbdzerlw";
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
   const [status, setStatus] = useState({ type: "", message: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -25,7 +28,7 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!formData.name || !formData.email || !formData.message) {
@@ -39,15 +42,38 @@ const Contact = () => {
       return;
     }
 
-    setStatus({
-      type: "success",
-      message: "Message sent successfully! I'll get back to you soon.",
-    });
-    setFormData({ name: "", email: "", message: "" });
+    setIsSubmitting(true);
 
-    setTimeout(() => {
-      setStatus({ type: "", message: "" });
-    }, 5000);
+    try {
+      const response = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setStatus({
+          type: "success",
+          message: "Message sent successfully! I'll get back to you soon.",
+        });
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        setStatus({
+          type: "error",
+          message: "Failed to send message. Please try again.",
+        });
+      }
+    } catch (error) {
+      setStatus({
+        type: "error",
+        message: "Something went wrong. Please try again later.",
+      });
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => {
+        setStatus({ type: "", message: "" });
+      }, 5000);
+    }
   };
 
   const socialIcons = {
@@ -141,10 +167,11 @@ const Contact = () => {
 
                 <button
                   type="submit"
-                  className="w-full px-6 py-3 bg-linear-to-r from-primary/10 to-primary text-white rounded-xl font-medium hover:opacity-90 transition-all duration-300 flex items-center justify-center gap-2 hover:shadow-2xl hover:shadow-primary/30 group"
+                  disabled={isSubmitting}
+                  className="w-full px-6 py-3 bg-linear-to-r from-primary/10 to-primary text-white rounded-xl font-medium hover:opacity-90 transition-all duration-300 flex items-center justify-center gap-2 hover:shadow-2xl hover:shadow-primary/30 group disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <span>Send Message</span>
-                  <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                  <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
+                  {!isSubmitting && <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />}
                 </button>
 
                 {status.message && (
