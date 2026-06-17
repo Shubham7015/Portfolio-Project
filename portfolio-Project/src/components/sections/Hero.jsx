@@ -63,7 +63,7 @@ const Hero = () => {
                     key={index}
                     className="text-left border-r border-white/50 pr-10 last:border-r-0"
                   >
-                    <div className="text-2xl font-normal text-primary mb-[8px] font-mono">
+                    <div className="text-2xl font-normal text-primary mb-2 font-mono">
                       {stat.value}
                     </div>
                     <p className="text-sm text-white leading-snug">
@@ -80,7 +80,7 @@ const Hero = () => {
             <div className="relative ">
               <div className="relative overflow-hidden rounded-2xl aspect-4/5 max-w-[500px] ml-auto group">
                 <div className="absolute inset-0 rounded-2xl overflow-hidden">
-                  <div className="absolute inset-[-2px] bg-linear-to-r from-primary/20 via-primary/10 to-primary animate-spin-slow rounded-2xl"></div>
+                  <div className="absolute -inset-0.5 bg-linear-to-r from-primary/20 via-primary/10 to-primary animate-spin-slow rounded-2xl"></div>
                 </div>
 
                 {/*image container */}
